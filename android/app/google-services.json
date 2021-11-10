@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "488514316270",
+    "project_id": "recomenda2-mobile",
+    "storage_bucket": "recomenda2-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488514316270:android:e5900576b24ca0197810ff",
+        "android_client_info": {
+          "package_name": "com.recomenda2mobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488514316270-jr3sr05tb0hnr0g23fkrebohe4lbju27.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.recomenda2mobileapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "488514316270-s3gd8uj7ites7pv62h158scekfb7cuu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYR6KehmTEnFYOdjt_EphUjIDTPca3zXA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488514316270-s3gd8uj7ites7pv62h158scekfb7cuu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

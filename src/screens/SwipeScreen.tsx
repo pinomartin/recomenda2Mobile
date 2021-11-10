@@ -9,6 +9,19 @@ const SwipeScreen = () => {
 
   const swiped = (direction: string, nameToDelete: string) => {
     console.log('removing: ' + nameToDelete);
+    switch (direction) {
+      case 'left':
+        console.log('LEFT');
+        break;
+      case 'right':
+        console.log('right');
+        break;
+      case 'top': 
+        console.log('top');
+        break;  
+      default:
+        break;
+    }
     setLastDirection(direction);
   };
 
@@ -19,7 +32,7 @@ const SwipeScreen = () => {
   return (
       
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        {isLoading ? (<><ActivityIndicator color="#000"></ActivityIndicator></>) : (
+        {isLoading ? (<ActivityIndicator color="#000"></ActivityIndicator>) : (
 
             <View style={{width: '90%', maxWidth: 260, height: '50%' }}>
               {popular.map(movie => {
@@ -29,7 +42,7 @@ const SwipeScreen = () => {
                   key={movie.id}
                   onSwipe={dir => swiped(dir, movie.title)}
                   onCardLeftScreen={() => outOfFrame('Tincho')}
-                  
+                  preventSwipe={['down']}
                   >
                   <View style={styles.swipper__card}>
                     <Image source={{uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`}} style={styles.swipper__imageCard} />
@@ -50,18 +63,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: '100%',
     maxWidth: 260,
-    height: 400,
+    height: 420,
     shadowColor: 'black',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    borderRadius: 20,
+    shadowOpacity: 0.05,
+    shadowRadius: 3,
+    borderRadius: 15,
     resizeMode: 'cover',
   },
   swipper__imageCard: {
     width: '100%',
     height: '100%',
     overflow: 'hidden',
-    borderRadius: 20,
+    borderRadius: 15,
   },
 });
 

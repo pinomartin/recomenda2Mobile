@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>488514316270-lhmfa1336mtq19mo4rtv0ppgghpdoa7u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.488514316270-lhmfa1336mtq19mo4rtv0ppgghpdoa7u</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>488514316270-jr3sr05tb0hnr0g23fkrebohe4lbju27.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCBJJPOQrpB1Vb47rzSoGDtqwfAewThh04</string>
+	<key>GCM_SENDER_ID</key>
+	<string>488514316270</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.Recomenda2MobileApp</string>
+	<key>PROJECT_ID</key>
+	<string>recomenda2-mobile</string>
+	<key>STORAGE_BUCKET</key>
+	<string>recomenda2-mobile.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:488514316270:ios:02cf1b07d7563ad27810ff</string>
+</dict>
+</plist>
