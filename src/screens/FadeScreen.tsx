@@ -20,11 +20,11 @@ const FadeScreen = () => {
 
             </Animated.View>
             <Button 
-                onPress={fadeIn}
+                onPress={() => fadeIn()}
                 title={'Fade In'}
             />
             <Button 
-                onPress={fadeOut}
+                onPress={() => fadeOut()}
                 title={'Fade Out'}
             />
         </View>

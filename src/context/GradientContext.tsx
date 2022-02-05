@@ -48,4 +48,3 @@ export const GradientProvider = ({children} : any ) =>  {
 
 
 
-// export default GradientContext

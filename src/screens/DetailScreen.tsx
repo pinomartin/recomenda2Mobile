@@ -14,6 +14,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import useMovieDetails from '../hooks/useMovieDetails';
 import MovieDetails from '../components/MovieDetails';
+import { getTheme } from '../utils/theme/colors';
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
@@ -26,7 +27,7 @@ const DetailScreen = ({navigation, route}: Props) => {
   const {isLoading, cast, movieFull} = useMovieDetails(movie.id);
 
   return (
-    <ScrollView>
+    <ScrollView style={{flexGrow: 1, backgroundColor: '#323232'}}>
       <View style={styles.imageContainer}>
         <View style={styles.imgBorder}>
           <Image source={{uri}} style={styles.posterImage} />
@@ -43,10 +44,10 @@ const DetailScreen = ({navigation, route}: Props) => {
         <MovieDetails movieFull={movieFull!} cast={cast} />
       )}
 
-      <TouchableOpacity style={styles.backButton}
-          onPress={() => navigation.pop()}  
-      >
-        <Icon color="white" name="arrow-back-outline" size={60} />
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.pop()}>
+        <Icon color="white" name="arrow-back-outline" size={30} />
       </TouchableOpacity>
     </ScrollView>
   );
@@ -83,10 +84,12 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 16,
     opacity: 0.8,
+    color: getTheme().white,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: getTheme().primary
   },
   backButton: {
     position: 'absolute',
