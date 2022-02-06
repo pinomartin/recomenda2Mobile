@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  StyleSheet,
-  Pressable,
-  StyleProp,
-  ViewStyle,
-} from 'react-native';
+import {Text, StyleSheet, Pressable, StyleProp, ViewStyle} from 'react-native';
 import {elevations} from '../../utils/theme';
 import {getTheme} from '../../utils/theme/colors';
 
@@ -13,11 +7,18 @@ interface ButtonProps {
   onPress: () => void;
   label: string;
   customStyles?: StyleProp<ViewStyle>;
+  isDisabled?: boolean;
 }
 
-const Button = ({onPress, label = 'Press me', customStyles}: ButtonProps) => {
+const Button = ({
+  onPress,
+  label = 'Press me',
+  customStyles,
+  isDisabled = false,
+}: ButtonProps) => {
   return (
     <Pressable
+      disabled={isDisabled}
       style={[styles.homeScreen__buttonWrapper, customStyles]}
       onPress={onPress}>
       <Text style={styles.homeScreen__swipperButton__label}>{label}</Text>
@@ -41,5 +42,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: getTheme().white,
     fontWeight: 'bold',
+  },
+  button__disabled: {
+    backgroundColor: getTheme().secondary10,
   },
 });

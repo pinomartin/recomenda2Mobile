@@ -22,6 +22,7 @@ import {getImageColors} from '../helpers/getColors';
 import {GradientContext} from '../context/GradientContext';
 import {getTheme} from '../utils/theme/colors';
 import movieDB from '../api/movieDB';
+import useLogin from '../firebase/useLogin';
 
 const {width: windowWidth} = Dimensions.get('window');
 
@@ -31,6 +32,7 @@ const HomeScreen = ({
   const {nowPlaying, popular, topRated, upcoming, isLoading} = useMovies();
   const {top} = useSafeAreaInsets();
   const {setMainColors} = useContext(GradientContext);
+  const {signOut} = useLogin();
 
   const getPosterColors = async (index: number) => {
     // nowPlaying[index].title
@@ -73,10 +75,28 @@ const HomeScreen = ({
               onSnapToItem={index => getPosterColors(index)}
             />
           </View>
-          <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 16}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 16,
+            }}>
             <Button
               onPress={() => navigation.navigate('SwipeScreen')}
               label="Recomenda2"
+            />
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 16,
+            }}>
+            <Button
+              onPress={() => signOut(() => navigation.navigate('LoginScreen'))}
+              label="Salir !"
             />
           </View>
           {/* <View style={styles.homeScreen__buttonWrapper}>

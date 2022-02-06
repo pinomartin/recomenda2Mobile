@@ -13,18 +13,22 @@ export const themeOptions = {
 interface ITheme {
   white: string;
   primary: string;
+  primary90: string;
   primary70: string;
   primary50: string;
   primary40: string;
   primary30: string;
   primary10: string;
   secondary: string;
-  secondary90: string;
-  secondary70: string;
-  secondary50: string;
+  // secondary90: string;
+  // secondary70: string;
+  // secondary50: string;
   secondary30: string;
   secondary10: string;
   additional: string;
+  additional10: string;
+  additional20: string;
+  additional40: string;
   information: string;
   approved: string;
   warning: string;
@@ -54,24 +58,28 @@ export const ThemeColors: any = {
     recomenda2: '#FA4EAB',
     blue: 'rgb(0, 85, 184)',
   },
+  primary90: {
+    recomenda2: '#FC28BF',
+  },
+
   primary70: {
-    recomenda2: '#FE83C6',
+    recomenda2: '#FA4EAB',
     blue: 'rgb(58, 121, 194)',
   },
   primary50: {
-    recomenda2: '#7F888F',
+    recomenda2: '#FE83C6',
     blue: 'rgb(102, 149, 204)',
   },
   primary40: {
-    recomenda2: '#969DA4',
+    recomenda2: '#FFADF0',
     blue: 'rgb(129, 168, 214)',
   },
   primary30: {
-    recomenda2: '#D0D3D6',
+    recomenda2: '#FBCAFF',
     blue: 'rgb(199, 216, 235)',
   },
   primary10: {
-    recomenda2: '#F2F3F4',
+    recomenda2: '#FDEBF7',
     blue: 'rgb(233, 238, 245)',
   },
   // Secondary
@@ -88,36 +96,48 @@ export const ThemeColors: any = {
     blue: 'rgb(58, 121, 194)',
   },
   secondary50: {
-    recomenda2: '#F7C79D',
+    recomenda2: '#969DA4',
     blue: 'rgb(102, 149, 204)',
   },
   secondary30: {
-    recomenda2: '#FADCC2',
+    recomenda2: '#D0D3D6',
+    // recomenda2: '#7F888F',
     blue: 'rgb(199, 216, 235)',
   },
   secondary10: {
-    recomenda2: '#FDF1E7',
+    recomenda2: '#F2F3F4',
     blue: 'rgb(233, 238, 245)',
   },
   // Complemetary
   additional: {
+    recomenda2: '#C642FD',
+  },
+  additional10: {
+    recomenda2: '#D47AE8',
+  },
+  // Complemetary
+  additional20: {
+    recomenda2: '#9C51E0',
+  },
+  // Complemetary
+  additional40: {
     recomenda2: '#7A0BC0',
   },
   // Semantics
   information: {
-    recomenda2: '#0267A1',
+    recomenda2: '#548CFF',
     blue: 'rgb(42, 0, 249)',
   },
   approved: {
-    recomenda2: '#177531',
+    recomenda2: '#41FAA6',
     blue: 'rgb(119, 162, 30)',
   },
   warning: {
-    recomenda2: '#FDB426',
+    recomenda2: '#FAE866',
     blue: 'rgb(255, 175, 11)',
   },
   error: {
-    recomenda2: '#A90B0B',
+    recomenda2: '#E33B41',
     blue: 'rgb(195, 0, 0)',
   },
   // Semantics - 40
@@ -134,11 +154,11 @@ export const ThemeColors: any = {
     blue: 'rgb(196, 220, 159)',
   },
   warning40: {
-    recomenda2: '#FFE795',
-    blue: 'rgb(255, 223, 147)',
+    recomenda2: '#FFFDA2',
+    blue: '#FFE795',
   },
   error40: {
-    recomenda2: '#FFB4B4',
+    recomenda2: '#F4705A',
     blue: 'rgb(244, 149, 151)',
   },
   // Overlay
