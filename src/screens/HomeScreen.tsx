@@ -15,8 +15,10 @@ import {GradientContext} from '../context/GradientContext';
 import {getTheme} from '../utils/theme/colors';
 import movieDB from '../api/movieDB';
 import useLogin from '../firebase/auth/useLogin';
-import {usersCollection} from '../firebase/firestore/firestore';
+// import {usersCollection} from '../firebase/firestore/firestore';
 import Loader from '../components/Loader';
+import {getUserByID} from '../firebase/firestore/users';
+import GradientBackgroud from '../components/GradientBackgroud';
 
 const {width: windowWidth} = Dimensions.get('window');
 
@@ -48,7 +50,7 @@ const HomeScreen = ({
   }
 
   return (
-    // <GradientBackgroud>
+    <GradientBackgroud>
     <ScrollView>
       <View
         style={{
@@ -84,10 +86,7 @@ const HomeScreen = ({
             justifyContent: 'center',
             marginBottom: 16,
           }}>
-          <Button
-            onPress={() => signOut(() => navigation.navigate('HomeScreen'))}
-            label="Salir !"
-          />
+          <Button onPress={() => signOut()} label="Salir !" />
         </View>
         {/* <View style={styles.homeScreen__buttonWrapper}>
             <TouchableOpacity
@@ -104,7 +103,7 @@ const HomeScreen = ({
         <HorizontalSlider title={'Proximamente'} movies={upcoming} />
       </View>
     </ScrollView>
-    // </GradientBackgroud>
+    </GradientBackgroud>
   );
 };
 

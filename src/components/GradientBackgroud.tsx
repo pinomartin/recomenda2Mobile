@@ -30,7 +30,7 @@ const GradientBackgroud = ({children}: Props) => {
         ]}
         style={{...StyleSheet.absoluteFillObject}}
         start={{x: 0.1, y: 0.1}}
-        end={{x: 0.5, y: 0.7}}
+        end={{x: 0.5, y: 0.9}}
       />
 
       <Animated.View style={{...StyleSheet.absoluteFillObject, opacity}}>
@@ -38,7 +38,7 @@ const GradientBackgroud = ({children}: Props) => {
           colors={[colors.primary, colors.secondary, getTheme().secondary]}
           style={{...StyleSheet.absoluteFillObject}}
           start={{x: 0.1, y: 0.1}}
-          end={{x: 0.5, y: 0.7}}
+          end={{x: 0.5, y: 0.9}}
         />
       </Animated.View>
       {children}

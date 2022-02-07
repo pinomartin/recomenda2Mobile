@@ -29,18 +29,18 @@ export const AuthProvider = ({children}: any) => {
         user,
         setUser,
         isLoading: isLoading || isRegisterLoading,
-        login: (email: string, password: string, callback: () => void) =>
-          signInWithEmailAndPassword(email, password, () => {}),
-        register: (email: string, password: string, callback: () => void) => {
+        login: (email: string, password: string) =>
+          signInWithEmailAndPassword(email, password),
+        register: (email: string, password: string) => {
           try {
-            createAccountWithEmail(email, password, () => {});
+            createAccountWithEmail(email, password);
           } catch (e) {
             console.log(e);
           }
         },
         logout: async () => {
           try {
-            await signOut(() => {});
+            await signOut();
           } catch (e) {
             console.error(e);
           }

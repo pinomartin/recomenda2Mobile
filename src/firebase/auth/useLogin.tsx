@@ -10,13 +10,11 @@ const useLogin = () => {
   const signInWithEmailAndPassword = (
     email: string,
     password: string,
-    callback: () => void,
   ) => {
     setIsLoading(true);
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        callback();
         setErrorMessage(errorMessageInitialState);
         setIsLoading(false);
       })
@@ -45,7 +43,7 @@ const useLogin = () => {
       });
   };
 
-  const signOut = async (callback: () => void) => {
+  const signOut = async () => {
     setIsLoading(true);
     auth()
       .signOut()
@@ -53,7 +51,6 @@ const useLogin = () => {
         console.log('User signed out!');
         setErrorMessage(errorMessageInitialState);
         setIsLoading(false);
-        callback();
       });
   };
 

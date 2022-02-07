@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import movieDB from "../api/movieDB";
 import { Cast, CreditsResponse } from "../interfaces/creditInterface";
 import { MovieFull } from "../interfaces/movieInterface";

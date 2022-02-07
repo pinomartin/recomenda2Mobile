@@ -1,5 +1,6 @@
-import auth from '@react-native-firebase/auth';
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import {useState} from 'react';
+import { addUserToDB } from '../firestore/users';
 
 const useSignUp = () => {
   const errorInitialState = {
@@ -13,16 +14,15 @@ const useSignUp = () => {
   const createAccountWithEmail = (
     email: string,
     password: string,
-    callback: () => void,
   ) => {
     setIsLoading(true);
     auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((response) => {
         console.log('User account created & signed in!');
         setIsLoading(false);
         setErrorMessage(errorInitialState);
-        callback();
+        addUserToDB(response.user.email!, response.user.uid).then(e => console.log(e))
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
