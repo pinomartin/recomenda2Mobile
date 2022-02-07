@@ -2,7 +2,6 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {Navigation, RootStackParams} from '../navigation/Navigation';
 import React from 'react';
 import {
-  ActivityIndicator,
   Dimensions,
   Image,
   ScrollView,
@@ -15,6 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import useMovieDetails from '../hooks/useMovieDetails';
 import MovieDetails from '../components/MovieDetails';
 import { getTheme } from '../utils/theme/colors';
+import Loader from '../components/Loader';
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailScreen'> {}
 
@@ -39,7 +39,7 @@ const DetailScreen = ({navigation, route}: Props) => {
       </View>
       {/* <Icon name="star-outline" color="grey" size={20} /> */}
       {isLoading ? (
-        <ActivityIndicator size={30} color="grey" style={{marginTop: 20}} />
+        <Loader size={30} loaderStyles={{marginTop: 20}} />
       ) : (
         <MovieDetails movieFull={movieFull!} cast={cast} />
       )}

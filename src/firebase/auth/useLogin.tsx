@@ -33,6 +33,12 @@ const useLogin = () => {
             passwordError: 'La contraseña es incorrecta',
           });
         }
+        if (error.code === 'auth/too-many-requests') {
+          setErrorMessage({
+            ...loginError,
+            passwordError: 'Hubo un problema, intenta más tarde',
+          });
+        }
         setIsLoading(false);
 
         console.log('errorSignInEmail', error);

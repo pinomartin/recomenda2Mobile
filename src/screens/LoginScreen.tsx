@@ -1,24 +1,28 @@
 import {StackScreenProps} from '@react-navigation/stack';
-import React, {useState} from 'react';
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+import React, {useContext, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import useLogin from '../firebase/useLogin';
-import useRegister from '../firebase/useSignUp';
-import {RootStackParams} from '../navigation/Navigation';
+import Loader from '../components/Loader';
+import {AuthContext} from '../context/AuthContext';
+import {AuthStackParam} from '../navigation/AuthStack';
 import {elevations} from '../utils/theme';
 import {getTheme} from '../utils/theme/colors';
 
 const LoginScreen = ({
   navigation,
-}: StackScreenProps<RootStackParams, 'LoginScreen'>) => {
-  const {signInWithEmailAndPassword, loginError, isLoading} = useLogin();
-  const {createAccountWithEmail, registerError, isRegisterLoading} =
-    useRegister();
+}: StackScreenProps<AuthStackParam, 'LoginScreen'>) => {
+  // const {signInWithEmailAndPassword, loginError, isLoading} = useLogin();
+  // const {createAccountWithEmail, registerError, isRegisterLoading} =
+  //   useRegister();
+  const {login, register, isLoading, registerError, loginError} =
+    useContext(AuthContext);
   const [isRegisterMode, setIsRegisterMode] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // const {...authData} = useAuth();
+  // const {user, initializing} = authData;
 
   return (
     <View style={styles.loginScreen__container}>
@@ -32,12 +36,8 @@ const LoginScreen = ({
           caption={registerError.emailError || loginError.emailError}
         />
       </View>
-      {isLoading ? (
-        <ActivityIndicator color={getTheme().primary10} size={30} />
-      ) : null}
-      {isRegisterLoading ? (
-        <ActivityIndicator color={getTheme().primary10} size={30} />
-      ) : null}
+      {isLoading ? <Loader color={getTheme().primary10} size={30} /> : null}
+
       <View style={styles.loginScreen__inputContainer}>
         <Text style={styles.loginScreen__inputLabel}>Password</Text>
         <Input
@@ -56,11 +56,7 @@ const LoginScreen = ({
         <View style={styles.loginScreen__inputContainer}>
           <Button
             label={'Registrate!'}
-            onPress={() =>
-              createAccountWithEmail(email, password, () =>
-                navigation.navigate('HomeScreen'),
-              )
-            }
+            onPress={() => register(email, password, () => {})}
             customStyles={styles.loginScreen__submitButton}
           />
         </View>
@@ -68,11 +64,7 @@ const LoginScreen = ({
         <View style={styles.loginScreen__inputContainer}>
           <Button
             label={'Iniciar Sesion'}
-            onPress={() =>
-              signInWithEmailAndPassword(email, password, () =>
-                navigation.navigate('HomeScreen'),
-              )
-            }
+            onPress={() => login(email, password, () => {})}
             customStyles={styles.loginScreen__loginButton}
           />
         </View>
@@ -108,15 +100,12 @@ const styles = StyleSheet.create({
   },
   loginScreen__submitButton: {
     backgroundColor: getTheme().additional,
-    paddingHorizontal: 32,
   },
   loginScreen__loginButton: {
     backgroundColor: getTheme().additional20,
-    paddingHorizontal: 32,
   },
   loginScreen__buttonRegisterLoginMode: {
     backgroundColor: 'transparent',
-    marginTop: 8,
     borderColor: getTheme().primary10,
   },
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, StyleSheet, Pressable, StyleProp, ViewStyle} from 'react-native';
+import { windowHeight, windowWidth } from '../../utils/layout';
 import {elevations} from '../../utils/theme';
 import {getTheme} from '../../utils/theme/colors';
 
@@ -30,7 +31,9 @@ export default Button;
 
 const styles = StyleSheet.create({
   homeScreen__buttonWrapper: {
-    minHeight: 50,
+    marginTop: 8,
+    width: windowWidth / 2,
+    height: windowHeight / 15,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,

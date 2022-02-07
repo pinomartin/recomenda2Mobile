@@ -1,19 +1,11 @@
 import {StackScreenProps} from '@react-navigation/stack';
 import React, {useContext, useEffect} from 'react';
-import {
-  ActivityIndicator,
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Dimensions, ScrollView, View} from 'react-native';
 import Button from '../components/Button';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Carousel from 'react-native-snap-carousel';
 import CardMoviePoster from '../components/CardMoviePoster';
-import GradientBackgroud from '../components/GradientBackgroud';
+// import GradientBackgroud from '../components/GradientBackgroud';
 import HorizontalSlider from '../components/HorizontalSlider';
 import useMovies from '../hooks/useMovies';
 import {RootStackParams} from '../navigation/Navigation';
@@ -22,7 +14,9 @@ import {getImageColors} from '../helpers/getColors';
 import {GradientContext} from '../context/GradientContext';
 import {getTheme} from '../utils/theme/colors';
 import movieDB from '../api/movieDB';
-import useLogin from '../firebase/useLogin';
+import useLogin from '../firebase/auth/useLogin';
+import {usersCollection} from '../firebase/firestore/firestore';
+import Loader from '../components/Loader';
 
 const {width: windowWidth} = Dimensions.get('window');
 
@@ -50,56 +44,52 @@ const HomeScreen = ({
   }, [nowPlaying]);
 
   if (isLoading) {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <ActivityIndicator color="coral" size={50} />
-      </View>
-    );
+    return <Loader size={50} />;
   }
 
   return (
-    <GradientBackgroud>
-      <ScrollView>
+    // <GradientBackgroud>
+    <ScrollView>
+      <View
+        style={{
+          marginTop: top + 20,
+        }}>
+        {/* {Carousel de peliculas} */}
+        <View style={{height: 440}}>
+          <Carousel
+            data={nowPlaying}
+            renderItem={({item}) => <CardMoviePoster movie={item} />}
+            sliderWidth={windowWidth}
+            itemWidth={300}
+            inactiveSlideOpacity={0.9}
+            onSnapToItem={index => getPosterColors(index)}
+          />
+        </View>
         <View
           style={{
-            marginTop: top + 20,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 16,
           }}>
-          {/* {Carousel de peliculas} */}
-          <View style={{height: 440}}>
-            <Carousel
-              data={nowPlaying}
-              renderItem={({item}) => <CardMoviePoster movie={item} />}
-              sliderWidth={windowWidth}
-              itemWidth={300}
-              inactiveSlideOpacity={0.9}
-              onSnapToItem={index => getPosterColors(index)}
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: 16,
-            }}>
-            <Button
-              onPress={() => navigation.navigate('SwipeScreen')}
-              label="Recomenda2"
-            />
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: 16,
-            }}>
-            <Button
-              onPress={() => signOut(() => navigation.navigate('LoginScreen'))}
-              label="Salir !"
-            />
-          </View>
-          {/* <View style={styles.homeScreen__buttonWrapper}>
+          <Button
+            onPress={() => navigation.navigate('HomeScreen')}
+            label="Recomenda2"
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 16,
+          }}>
+          <Button
+            onPress={() => signOut(() => navigation.navigate('HomeScreen'))}
+            label="Salir !"
+          />
+        </View>
+        {/* <View style={styles.homeScreen__buttonWrapper}>
             <TouchableOpacity
               activeOpacity={0.7}
               style={styles.homeScreen__swipperButton}
@@ -108,13 +98,13 @@ const HomeScreen = ({
             </TouchableOpacity>
           </View> */}
 
-          {/* {Peliculas Populares} */}
-          <HorizontalSlider title={'Mas populares'} movies={popular} />
-          <HorizontalSlider title={'Mejor valuadas'} movies={topRated} />
-          <HorizontalSlider title={'Proximamente'} movies={upcoming} />
-        </View>
-      </ScrollView>
-    </GradientBackgroud>
+        {/* {Peliculas Populares} */}
+        <HorizontalSlider title={'Mas populares'} movies={popular} />
+        <HorizontalSlider title={'Mejor valuadas'} movies={topRated} />
+        <HorizontalSlider title={'Proximamente'} movies={upcoming} />
+      </View>
+    </ScrollView>
+    // </GradientBackgroud>
   );
 };
 
