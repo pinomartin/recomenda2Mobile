@@ -1,10 +1,11 @@
 import {StackScreenProps} from '@react-navigation/stack';
 import React, {useContext, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Button, { BUTTON_TYPES } from '../components/Button';
+import Button, {BUTTON_TYPES} from '../components/Button';
 import Input from '../components/Input';
 import Loader from '../components/Loader';
 import {AuthContext} from '../context/AuthContext';
+import useInput from '../hooks/useInput';
 import {AuthStackParam} from '../navigation/AuthStack';
 import {elevations} from '../utils/theme';
 import {getTheme} from '../utils/theme/colors';
@@ -18,19 +19,21 @@ const LoginScreen = ({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  return (
+  return !isLoading ? (
     <View style={styles.loginScreen__container}>
       <View style={styles.loginScreen__inputContainer}>
         <Text style={styles.loginScreen__inputLabel}>Email</Text>
         <Input
           value={email}
-          onChangeText={e => setEmail(e)}
+          onChangeText={e => {
+            setEmail(e);
+          }}
           keyboardType={'email-address'}
           placeholder="mail@ejemplo.com"
           caption={registerError.emailError || loginError.emailError}
         />
       </View>
-      {/* {isLoading ? <Loader color={getTheme().primary10} size={30} /> : null} */}
+      {/* {isLoading ?  : null} */}
 
       <View style={styles.loginScreen__inputContainer}>
         <Text style={styles.loginScreen__inputLabel}>Contraseña</Text>
@@ -42,7 +45,9 @@ const LoginScreen = ({
               : loginError.passwordError
           }
           value={password}
-          onChangeText={e => setPassword(e)}
+          onChangeText={e => {
+            setPassword(e);
+          }}
           secureText
         />
       </View>
@@ -52,6 +57,7 @@ const LoginScreen = ({
             label={'Registrate!'}
             onPress={() => register(email, password, () => {})}
             type={BUTTON_TYPES.TERITIARY}
+
             // isDisabled
             // customStyles={styles.loginScreen__submitButton}
           />
@@ -61,7 +67,6 @@ const LoginScreen = ({
           <Button
             label={'Iniciar Sesion'}
             onPress={() => login(email, password, () => {})}
-            // customStyles={styles.loginScreen__loginButton}
           />
         </View>
       )}
@@ -71,6 +76,12 @@ const LoginScreen = ({
         customStyles={styles.loginScreen__buttonRegisterLoginMode}
       />
     </View>
+  ) : (
+    <Loader
+      containerStyles={styles.loginScreen__container}
+      color={getTheme().primary10}
+      size={30}
+    />
   );
 };
 
